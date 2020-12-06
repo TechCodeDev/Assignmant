@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+    <title>Example1</title>
+    <head>
+        <script src="jquery.min.js" type="text/javascript"></script>
+        <script src="jquery-ui-1.12.1.custom/jquery-ui.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1.custom/jquery-ui.min.css">
+        <link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1.custom/jquery-ui.structure.min.css">
+        <link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1.custom/jquery-ui.theme.min.css">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+   </head>
+   
+    <script>
+        $("document").ready(function()
+        {
+            $( function() 
+            {
+                $( "#IdDivDig" ).dialog(
+                {
+                     autoOpen: false,
+                     title: "Dialog"
+                });
+                $( "#IdButOpe" ).on( "click", function() 
+                {
+                     $( "#IdDivDig" ).dialog( "open" );
+                     $("#IdDivDig").html(" Welcome "+$("input").val());
+                });
+                
+               
+             });
+           
+        })
+    </script>
+    
+    <body>
+        <section>
+          <label>Your Name : </label><input type="text"/><button id="IdButOpe">Open Dialog Box</button>
+          <div id="IdDivDig"> 
+          </div>
+        </section>
+    </body>
+</html>

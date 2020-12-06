@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+    <title>Example1</title>
+    <head>
+        <script src="jquery.min.js" type="text/javascript"></script>
+        <script src="jquery-ui-1.12.1.custom/jquery-ui.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1.custom/jquery-ui.min.css">
+        <link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1.custom/jquery-ui.structure.min.css">
+        <link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1.custom/jquery-ui.theme.min.css">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  </head>
+   <style>
+     
+   </style>
+    <script>
+        $("document").ready(function()
+        {   
+            $( "button" ).button();
+            $("button").on("click",function()
+            {
+                $( "button" ).button({ disabled:true,label: "Downloading...!"});
+                var val=0,progressTimer;
+                $( "#IdDivProg" ).dialog
+                ({
+                    title:"File Download",
+                    buttons: {
+                                 CancelDownload: function() 
+                                                {   
+                                                    $( this ).dialog( "close" ); 
+                                                    $( "#IdDivProgBar" ).progressbar({disabled: true,value:0});
+                                                    clearTimeout( progressTimer );
+                                                }
+                            },      
+                    open: function( event, ui )
+                    {
+                        $( "#IdDivProgBar").progressbar({disabled: false,value:false});
+                        $("#IdDivProgVal").html("Start Downloading..!");
+
+                        progressTimer = setTimeout( Progress, 2000 );
+                    },              
+                    beforeClose: function( event, ui ) 
+                    {
+                        $( "#IdDivProgBar" ).progressbar({disabled: true,value:0});
+                        $( "button" ).button({disabled:false,label:'Start Download'});
+                      
+                        
+                    }
+                });
+               
+               
+                function Progress()
+                {
+                   
+                    $( "#IdDivProgBar").progressbar({value: val});
+                    if(val<99)
+                    {
+                        val=val+2;
+                        $("#IdDivProgVal").html(val+"%");
+                        progressTimer=setTimeout(Progress,80);
+                      
+                    }
+                    else
+                    {
+                        $("#IdDivProgVal").html("Completed");
+                    }
+                }
+              
+             
+            })
+        })
+    </script>
+    
+    <body>
+        <section>
+          <button>Start Download</button>
+        </section>
+        
+        <div id="IdDivProg">
+            <div id="IdDivProgVal"></div>
+            <div id="IdDivProgBar"></div>
+        </div>
+    </body>
+</html>

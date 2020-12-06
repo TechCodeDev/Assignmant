@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+    <title>Assignment-15</title>
+    <head>
+        <script src="jquery.min.js" type="text/javascript"></script>
+        <script src="jquery-ui-1.12.1.custom/jquery-ui.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1.custom/jquery-ui.min.css">
+        <link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1.custom/jquery-ui.structure.min.css">
+        <link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1.custom/jquery-ui.theme.min.css">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  </head>
+    <style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+     input
+     {
+     float: right;
+     
+     }
+   
+    
+     li{
+         list-style: none;
+     }
+     form{
+         padding: 25px;
+         margin-left: 100px;
+         margin-right: 900px;
+     }
+    
+     #Content{
+         background-color: black;
+         color: white;
+         padding: 10px;
+         
+     }
+    </style>
+   
+    <script>
+        $("document").ready(function()
+        {
+            $( "input" ).eq(2).tooltip({
+             content: "<p id='Content'>Password</p><p><b>Enter Password That Must Be</b> </p><br><p>(i) 6-24 character long</p><p>(ii)Must Contain a number</p><p>(iii)Must Contain a Capital letter</p>",
+             position: { my: "left+15 center", at: "right center" },
+             tooltipClass: "custom-tooltip-styling"
+            
+            });
+        })
+    </script>
+    
+    <body>
+       
+        <form action="">
+        <p>A Form Example with Tooltip </p><br>
+        <label>Your Name :</label><input type="text"/><br><br>
+        <label>Email :</label> <input type="email"><br><br>
+        <label>Password :</label> <input type="password" title=""/><br><br>
+    </form>
+    </body>
+</html>
