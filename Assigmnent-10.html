@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+    <title>Example1</title>
+    <head>
+        <script src="jquery.min.js" type="text/javascript"></script>
+        <script src="jquery-ui-1.12.1.custom/jquery-ui.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1.custom/jquery-ui.min.css">
+        <link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1.custom/jquery-ui.structure.min.css">
+        <link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1.custom/jquery-ui.theme.min.css">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  </head>
+   
+    <script>
+        $("document").ready(function()
+        {
+            var Company = [ {  label: "Facebook",value: "https://www.facebook.com/"},
+                              {  label: "Google", value:'https://www.google.com/'},
+                              {   label: "Youtabe",  value:'https://www.youtube.com/'}];
+           $("input").autocomplete
+           ({   
+               source:Company ,
+               select: function (event, ui) 
+               {
+                    $("input").append(ui.item.label); 
+                
+                }
+            });
+           $("button").on("click",function()
+            {
+                window.location.href= $("input").val();
+            })
+        })
+    </script>
+    
+    <body>
+        <section>
+         <label>Select Company : </label><input type="text"/><button>Go</button>
+        </section>
+    </body>
+</html>
