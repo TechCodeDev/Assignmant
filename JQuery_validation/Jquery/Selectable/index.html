@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    </head>
+    
+    <style>
+    p
+    {
+        width: 255px;
+        height: 30px;
+        border-radius: 3px;
+        text-align: right;
+        background-color: #dadada;
+    }
+    button
+    {
+        width: 60px;
+        height: 30px;
+        border-style: none;
+        background-color: #dadada;
+        border-radius:5px ;
+    }
+    *{
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    .container
+    {
+         padding-top: 100px;
+    }
+    button:hover
+    {
+        border: 1px solid gray;
+    }
+    span
+    {
+        margin: 100px;
+    }
+    </style>
+    <script>
+    $(document).ready(function()
+    {
+
+        $("button").click(function()
+        {
+            var val=$(this).html();
+            if(val=="Clear")
+            {
+                $("p").html(" ");
+            }
+            else
+            if(val!="=")
+            {
+                $("p").append(val);
+            }
+            else
+            {   
+                var Exp;
+                Exps=$("p").html();
+                var splitoper=Exps.split("");
+                for(var i=0;i<splitoper.length;i++)
+                {
+                    if(splitoper[i]=="+"||splitoper[i]=="-"||splitoper[i]=="*"||splitoper[i]=="/")
+                    {
+                        var oper=splitoper[i];  break;
+                    }
+                }
+                var splitExp= Exps.split(/[+]|[-]|[*]|[/]/);
+                switch(oper)
+                {
+                    case '+':var result=Number(splitExp[0])+Number(splitExp[1]);break;
+                    case '-':var result=Number(splitExp[0])-Number(splitExp[1]);break;
+                    case '*':var result=Number(splitExp[0])*Number(splitExp[1]);break;
+                    case '/':var result=Number(splitExp[0])/Number(splitExp[1]);break;
+                }
+                $("p").html(result);
+            }
+        })
+    });
+</script>
+<body>
+    <center>
+        <div class="container">
+        <h3>Simple Calculator</h3>
+        <p></p>
+            <table>
+                <tr>
+                  <td> <button>1</button></td> 
+                   <td><button>2</button></td> 
+                    <td><button>3</button></td>
+                    <td><button>4</button></td>
+                </tr>
+                <tr>
+                    <td> <button>5</button></td> 
+                     <td><button>6</button></td> 
+                      <td><button>7</button></td>
+                      <td><button>8</button></td>
+                  </tr>
+                  <tr>
+                    <td> <button>9</button></td> 
+                     <td><button>0</button></td> 
+                      <td><button style="background: #4285f4;color: white;">=</button></td>
+                      <td><button>Clear</button></td>
+                  </tr>
+                  <tr>
+                    <td> <button>+</button></td> 
+                     <td><button>-</button></td> 
+                      <td><button>*</button></td>
+                      <td><button>/</button></td>
+                  </tr>
+            </table>   
+             <h3>(* Single Operation at Time)</h3>
+        </div>
+    </center>
+</body>
+</html>

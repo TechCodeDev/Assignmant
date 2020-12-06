@@ -1,0 +1,51 @@
+
+<!doctype html>
+<html>
+    <title>Example1</title>
+    <head>
+        <script src="../jquery.min.js" type="text/javascript"></script>
+        <script src="../jquery-ui-1.12.1.custom/jquery-ui.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="../jquery-ui-1.12.1.custom/jquery-ui.min.css">
+        <link rel="stylesheet" type="text/css" href="../jquery-ui-1.12.1.custom/jquery-ui.structure.min.css">
+        <link rel="stylesheet" type="text/css" href="../jquery-ui-1.12.1.custom/jquery-ui.theme.min.css">
+        
+    </head>
+    <style>
+        p{
+            border: 1px solid black;
+            height: 50px;
+            width: 50px;
+        }
+        .ui-draggable{
+            border: 1px solid red;
+        }
+        h3{
+            border: 1px solid black;
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+    <script>
+      $("document").ready(function()
+      {
+     
+        $("fieldset").controlgroup({
+            direction: "vertical",
+            onlyVisible: false,
+            disabled: true
+        });  
+        
+      });
+    </script>
+    <body>
+        <fieldset>
+            <legend>Select a Location: </legend>
+            <label for="radio-1">New York</label>
+            <input type="radio" name="radio-1" id="radio-1">
+            <label for="radio-2">Paris</label>
+            <input type="radio" name="radio-1" id="radio-2">
+            <label for="radio-3">London</label>
+            <input type="radio" name="radio-1" id="radio-3">
+          </fieldset>
+    </body>
+</html>

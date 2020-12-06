@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+    <title>Assignment-12</title>
+    <head>
+      <script src="jquery.min.js" type="text/javascript"></script>
+        <script src="jquery-ui-1.12.1.custom/jquery-ui.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1.custom/jquery-ui.min.css">
+        <link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1.custom/jquery-ui.structure.min.css">
+        <link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1.custom/jquery-ui.theme.min.css">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ </head>
+    <style>
+      *{
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      }
+      table,th,tr,td{
+        border-collapse: collapse;
+        border: 3px solid black;
+        padding: 5px;
+      }
+    </style>
+   
+    <script>
+        $("document").ready(function()
+        {
+            $( "#accordion" ).accordion();
+            $( "#tabs" ).tabs();
+           $("button").click(function()
+           {
+            
+             $("#accordion").append("<h3>"+$("input").first().val()+"</h3>");
+             $("#accordion").append("<div> Member ID :"+$("#memberid").val()+"<br> Friend Name :"+$("#friendname").val()+"<br> Address:"+$("#address").val()+"<br> Place:"+$("#place").val()+"<br> Date:"+$("input").last().val()+"</div>");
+             $("#accordion").accordion("refresh");
+             $("table").append("<tr><td>"+$("input").first().val()+"</td><td>"+$("#memberid").val()+"</td><td>"+$("#friendname").val()+"</td><td>"+$("#address").val()+"</td><td>"+$("#place").val()+"</td><td>"+$("input").last().val()+"</td></tr>");
+            
+           
+           })
+        })
+    </script>
+    
+    <body>
+      
+             <div id="tabs">
+                  <ul>
+                    <li><a href="#tabs-1">Members in GridView</a></li>
+                    <li><a href="#tabs-2">Member Duties</a></li>
+                    <li><a href="#tabs-3">Member of accordion</a></li>
+                  </ul>
+               
+                  <div id="tabs-1">
+                    <table>
+                          <tr>
+                            <th>
+                              Name
+                            </th>
+                            <th>
+                              Member ID
+                            </th>
+                            <th>
+                              Phone Number
+                            </th>
+                            <th>
+                              Address
+                            </th>
+                            <th>
+                              Place
+                            </th>
+                            <th>
+                              Date
+                            </th>
+                          </tr>
+                    </table>
+                  </div>
+               
+                  <div id="tabs-2">
+                    <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+                  </div>
+               
+                  <div id="tabs-3">     
+                    <div id="accordion">
+                    </div>
+                  </div>
+
+            </div>
+          <br>
+          
+          <label>Name:</label><input type="text" id="name"/><br><br>
+          <label>Member ID :</label> <input type="number" id="memberid"><br><br>
+          <label>Friend Name :</label><input type="text" id="friendname"/><br><br>
+          <label>Address:</label><input type="text" id="address"/><br><br>
+          <label>Place:</label><input type="text" id="place"/><br><br>
+          <label>Date:</label><input type="date" id="date"/><br><br>
+          <button>Submit</button>
+        </body>
+</html>

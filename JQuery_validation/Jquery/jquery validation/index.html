@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <title>Jquery Validation</title>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="jquery.validate.js"></script>
+        <script src="additional-methods.js"></script>
+    </head>
+    <style>
+        *{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        label.error {
+            color:red;
+        }
+        
+    </style>
+    <script>
+        $(document).ready(function () {
+            $("form").validate({
+                rules: {  
+                            name: {
+                                required:true,
+                                lettersonly:true
+                            },
+                            email: {
+                                        required: true,
+                                        email: true
+                                    }
+                        },
+                messages: {
+                            name: "<br>Please Enter A Valid Name",
+                            email: {
+                                        required: "<br>We need your email address to contact you",
+                                        email: " <br>Please  Enter a Valid Name"
+                                    }
+                         },
+                         errorPlacement: function(error, element) {
+                            error.insertAfter(element);
+                        }
+                
+            });
+        });
+    </script>
+    
+    
+    <body>
+        <form action="hai.html">
+            <label>Name:</label><input type="text" name="name"><br><br>
+            <label>Password</label><input type="email" name="email"><br><br>
+            <input type="submit">
+        </form>
+    </body>
+</html>
