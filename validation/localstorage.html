@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Sample Validation
+    </title>
+    <script src="Script/jquery.min.js"></script>
+</head>
+<style>
+    label {
+        display: inline-block;
+        width: 100px;
+        text-align: left;
+    }
+
+    form {
+        padding: 50px;
+    }
+</style>
+<script>
+
+    $("document").ready(function () {
+
+        var arry = [],val=[],arry1=[],count=0;
+      //  localStorage.setItem("Details", JSON.stringify(arry));
+       // arry = JSON.parse(localStorage.getItem("Details"));
+        $("#IDSub").click(function () 
+        {
+            arry=JSON.parse(localStorage.getItem("Details"));
+
+            debugger;
+            var name = $("#name").val();
+            var email = $("#email").val();
+            var number = $("#number").val();
+            val='{"name":"'+name+'",'+'"email":"'+email+'",'+'"number":"'+number+'"}';
+            // val.push(email);
+            // val.push(number);
+            if (arry.length == 0) 
+            {
+                arry[0]=val;
+                localStorage.setItem("Details",JSON.stringify(arry));
+                // arry = JSON.parse(localStorage.getItem("Details"));
+            }
+            else 
+            {
+                count=count+1
+                arry1 = JSON.parse(localStorage.getItem("Details"));
+                //alert(arry);
+                arry1[count]=val;
+                
+                localStorage.setItem("Details",JSON.stringify(arry1));
+            }
+            //arry = JSON.parse(localStorage.getItem("Details"));
+            // for(var i=0;i<arry.length;i++)
+            // {
+                // $("#Data").append(arry.email);
+            //}
+            alert(arry);
+        })
+
+    });
+
+
+</script>
+
+<body>
+    <!-- <form> -->
+    <label>Name:</label><input type="text" id="name" class="Validateinput ValidateSave"><br> <label
+        id="error"></label><br><br>
+    <label>Email:</label><input type="email" id="email" class="Validateinput"><br><br>
+    <label>Number:</label><input type="number" id="number" class="Validateinput"><br><br>
+    <input type="submit" id="IDSub"><br>
+    <button id="IdSav">Save</button>
+    <!-- </form> -->
+
+    <p id="Data"></p>
+</body>
+
+</html>

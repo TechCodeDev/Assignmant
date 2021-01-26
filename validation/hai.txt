@@ -1,0 +1,22 @@
+  var name=$("input[name=name]").val();
+                var email=$("input[name=email]").val();
+                var number=$("input[name=number]").val();
+                alert(name+""+email+""+number);
+                
+                val=[name,email,number];
+                
+                debugger;
+                if(arry.length==0)
+                {
+                    arry.push(val);
+                    localStorage.setItem("Details",JSON.stringify(arry));
+                    arry=JSON.parse(localStorage.getItem("Details"));    
+                }
+                else
+                {
+                    arry=JSON.parse(localStorage.getItem("Details"));
+                    alert(arry);
+                    arry.push(val);
+                    localStorage.setItem("Details",arry);
+
+                }

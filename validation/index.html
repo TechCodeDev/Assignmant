@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Sample Validation
+        </title>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    </head>
+    <style>
+        label
+        {
+            display:inline-block;
+            width:100px;
+            text-align: left;
+        }
+        form
+        {
+            padding: 50px;
+        }
+    </style>
+    <script>
+        $("document").ready(function()
+        {
+            
+            var validate=0; 
+           NameValidation($("#name"));
+            $("#name").change(function()
+              {
+                  
+                NameValidation($("#name"));
+              })
+           
+            $("#IDSub").click(function()
+            {
+            
+              var val=SubmitRecordValidation();
+              alert(val);
+              debugger
+              if(val==1){
+                  alert("Insert logic write here");
+              }
+              else{
+                alert("please Enter Mandate Field");
+              }
+             
+              
+            })
+             
+            $("#IdSav").click(function()
+              {
+                SaveRecordValidation();
+              })
+           
+        })
+        function NameValidation(id)
+        {
+                
+                // debugger;
+                $(id).change(function()
+                {
+                    // /^[a-z]+$/i.test( value );
+                    var patter=/^[a-z]+$/i;
+                    var val=new RegExp(patter);
+                    var result=val.test($(id).val().trim());
+                    if(result!=true)
+                    {
+                        //alert("please enter valid input");
+                        $(id).val(" ").css("border","1px solid red")
+                        $("#error").text("please Enter valid input")
+                   
+
+                    }
+                    else
+                    {
+                        $(id).css("border","1px solid silver")
+                    }
+                })
+            }
+            function SubmitRecordValidation()
+            {
+                debugger
+                var Count=$('.Validateinput').length;
+                for(var i=0;i<Count;i++)
+                {
+                    debugger
+                    var num=$('.Validateinput')[i]
+                    if($(num).val().trim()!="")
+                    {
+                        validate=1;
+                        $(num).css("border","1px solid silver");
+                        
+                    }
+                    else
+                    {
+                        validate=0;
+                       
+                        $(num).css("border","1px solid red");
+                        break;
+                        
+                    }
+                }
+                return validate;
+            }
+            function SaveRecordValidation()
+            {
+                debugger
+                var Count=$('.ValidateSave').length;
+                for(var i=0;i<Count;i++)
+                {
+                    debugger
+                    var num=$('.ValidateSave')[i]
+                    if($(num).val().trim()!="")
+                    {
+                        validate=1;
+                        $(num).css("border","1px solid silver");
+                        
+                    }
+                    else
+                    {
+                        validate=0;
+                       
+                        $(num).css("border","1px solid red");
+                        break;
+                        
+                    }
+                }
+                return validate;
+            }
+
+
+    </script>
+    <body>
+        <!-- <form> -->
+            <label>Name:</label><input type="text" id="name" class="Validateinput ValidateSave" ><br> <label id="error"></label><br><br>
+            <label>Email:</label><input type="email" id="email" class="Validateinput"><br><br>
+            <label>Number:</label><input type="number" id="number" class="Validateinput"><br><br>
+            <input type="submit" id="IDSub"><br>
+            <button id="IdSav">Save</button>
+        <!-- </form> -->
+    </body>
+</html>
