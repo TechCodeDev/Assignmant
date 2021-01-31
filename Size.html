@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8' />
+    <link href='lib/main.css' rel='stylesheet' />
+    <script src='lib/main.js'></script>
+    <script>
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl,
+                {
+                    //     height: "auto"
+                    //    contentHeight: 300,
+                    //    aspectRatio: 2.8,
+                    slotMinTime: '08:00',
+                    slotMaxTime: '20:00',
+                    //expandRows: true,
+                    //  height: '100%',
+
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                    },
+                    windowResize: function (arg)
+                    {
+                        alert('The calendar has adjusted to a window resize. Current view: ' + arg.view.type);
+                    }
+                });
+            // calendar.setOption('height', 700);//size by using Setter
+            calendar.render();
+
+        });
+
+    </script>
+</head>
+
+<body>
+    <!-- <button id="my-next-button">Prev Year</button> -->
+    <div id='calendar'></div>
+
+</body>
+
+</html>
