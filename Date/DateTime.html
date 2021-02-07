@@ -3,8 +3,13 @@
 
 <head>
     <meta charset='utf-8' />
+    <link rel="stylesheet" href="Script/jquery-ui.css">
+    <link rel="stylesheet" href="Script/jquery-ui.theme.css">
     <link href='../lib/main.css' rel='stylesheet' />
     <script src='../lib/main.js'></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="script/jquery-ui.js"></script>
     <script>
 
 
@@ -13,35 +18,91 @@
             var calendar = new FullCalendar.Calendar(calendarEl,
                 {
                     headerToolbar:
-                     {
+                    {
                         left: 'prev,next today',
                         center: 'title',
                         right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
                     },
-                //  weekends:false,             //Hide Weekends
-                //  hiddenDays: [ 1, 3, 5 ]     //Hide Mondays, Wednesdays, and Fridays
-                //  dayHeaders:false            //hide header of Days like sun,mon,tues..etc
-                //  dayHeaderFormat:
-                //                     { 
-                //                         weekday: 'long', 
-                //                         month: 'numeric', 
-                //                         day: 'numeric', 
-                //                         omitCommas: true 
-                //                     }
-                //  dayMinWidth:100,
-                slotDuration:'00:30:00'
+                    events:JSON.parse(localStorage.getItem("Details"))
+                    // events: [
+                    //     {
+                    //         title: 'event1',
+                    //         start: '2021-02-01'
+                    //     },
+                    //     {
+                    //         title: 'event2',
+                    //         start: '2010-01-05',
+                    //         end: '2010-01-07'
+                    //     },
+                    //     {
+                    //         title: 'event3',
+                    //         start: '2010-01-09T12:30:00',
+                    //         allDay: false // will make the time show
+                    //     }
+                    // ]
+
                 });
 
             calendar.render();
 
         });
+        $("document").ready(function () {
+            $("#IdFrmDte").datepicker({
+                // numberOfMonths:1,
+                minDate: 0,
+                maxDate: "+3m",
+                dateFormat: 'yy-mm-dd',
+                onSelect: function (selectdate) {
+                    var dateMin = $("#IdFrmDte").datepicker("getDate");
+                    // alert(date.setDate(date.getDate()+1));
+                    $("#IdToDte").val(' ');
+                    // date.setDate(date.getDate()+1);
+                    // $( "#IdToDte" ).datepicker("option","minDate",date);     
+                    var rMin = new Date(dateMin.getFullYear(), dateMin.getMonth(), dateMin.getDate() + 1); // Min Date = Selected + 1d
+                    var rMax = new Date(dateMin.getFullYear(), dateMin.getMonth() + 3, dateMin.getDate()); // Max Date = Selected + 31d
+                    $("#IdToDte").datepicker("option", "minDate", rMin);
+                    $("#IdToDte").datepicker("option", "maxDate", rMax);
+                }
+            });
+            $("#IdToDte").datepicker({
+                //numberOfMonths:1,
+                dateFormat: 'yy-mm-dd',
+                onSelect: function (selectdate) {
+                    const date1 = new Date($("#IdFrmDte").datepicker("getDate"));
+                    const date2 = new Date($("#IdToDte").datepicker("getDate"));
+                    const diffTime = Math.abs(date2 - date1);
+                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                    console.log(diffTime + " milliseconds");
+                    alert(diffDays + " days");
+                    //var date=new Date(selectdate);
+                    //date.setDate(date.getDate()-1);
+                    //date.setMonth(3);
 
+                }
+            });
+            $("button").click(function () {
+                var Title = $("#IdTiTle").val();
+                var Start = $("#IdFrmDte").val();
+                var end = $("#IdToDte").val();
+                var arry = JSON.parse(localStorage.getItem("Details"));
+                if (arry == null) {
+                    arry = [];
+                }
+                var val = { title: Title, start: Start, end: end };
+                arry.push(val);
+                localStorage.setItem("Details", JSON.stringify(arry));
+            })
+        })
     </script>
 </head>
 
 <body>
     <!-- <button id="my-next-button">Prev Year</button> -->
     <div id='calendar'></div>
+    <label>title:</label><input type="text" id="IdTiTle" /><br>
+    <label>Start:</label><input type="text" Id="IdFrmDte" /><br>
+    <label>end:</label><input type="text" Id="IdToDte" /><br>
+    <button>Create Event</button>
 
 </body>
 
