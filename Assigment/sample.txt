@@ -1,0 +1,120 @@
+ System.Web.HttpContext.Current.Response.Write("<Table border='1'><TR>");
+                foreach (DataColumn dc in DT_SORecords.Columns)
+                {
+                    System.Web.HttpContext.Current.Response.Write("<Td  style='font-size:12.0Pt;text-align:center;width:100Pt;background-color:#808080'><B>" + dc.ColumnName + "</B></Td>");
+                }
+                System.Web.HttpContext.Current.Response.Write("</TR>");
+                foreach (var item in FpGRNListForExport)
+                {
+                    dr = DT_SORecords.NewRow();
+                    dr[0] = item.ShipmentOder_Number;
+                    if (item.ShipmentOrder_Status_Name != null)
+                    {
+                        dr[1] = item.ShipmentOrder_Status_Name;
+                    }
+                    else
+                    {
+                        dr[1] = "";
+                    }
+                    if (item.Zone != null)
+                    {
+                        dr[2] = item.Zone;
+                    }
+                    else
+                    {
+                        dr[2] = "";
+                    }
+                    dr[3] = item.CustomerName;
+                    if (item.Pickup_Location != null)
+                    {
+                        dr[4] = item.Pickup_Location;
+                    }
+                    else
+                    {
+                        dr[4] = "";
+                    }
+                    dr[5] = item.Delivery_Location;
+                   
+                    if (item.Actualdeliverydate != null)
+                    {
+                        dr[6] = item.Actualdeliverydate;
+                    }
+                    else
+                    {
+                        dr[6] = "";
+                    }
+                    if (item.Model_Name != null)
+                    {
+                        dr[7] = item.Model_Name;
+                    }
+                    else
+                    {
+                        dr[7] = "";
+                    }
+                    if (item.SerialNumber != null)
+                    {
+                        dr[8] = item.SerialNumber;
+                    }
+                    else
+                    {
+                        dr[8] = "";
+                    }
+                    if (item.Vehicle_IN_DateTime != null)
+                    {
+                        dr[9] = item.Vehicle_IN_DateTime;
+                    }
+                    else
+                    {
+                        dr[9] = "";
+                    }
+                    if (item.Vehicle_Out_DateTime != null)
+                    {
+                        dr[10] = item.Vehicle_Out_DateTime;
+                    }
+                    else
+                    {
+                        dr[10] = "";
+                    }
+                    if (item.CurrentLocation != null)
+                    {
+                        dr[11] = item.CurrentLocation;
+                    }
+                    else
+                    {
+                        dr[11] = "";
+                    }
+                    dr[12] = item.ExpectedDeliveryDate;
+                    dr[13] = item.Vehicle_Number;
+                    dr[14] = item.TransporterName;
+                    dr[15] = item.DriverContactNumber;
+                  //  dr[16] = item.UpdatedDateAndTime;s
+                    dr[16] = item.UpdatedDateAndTime == null ? "" : String.Format("{0:dd-MMM-yyyy hh:mm tt}", item.UpdatedDateAndTime);
+                    dr[17] = item.Remarks;
+
+                    DT_SORecords.Rows.Add(dr);
+                }
+                /*Getting Rows and columns value from data table*/
+                foreach (DataRow Dr in DT_SORecords.Rows)
+                {
+                    System.Web.HttpContext.Current.Response.Write("<TR>");
+                    tab = "";
+                    for (int i = 0; i < DT_SORecords.Columns.Count; i++)
+                    {
+                        if (i == 0 || i == 1 || i == 2 || i == 4 || i == 5 || i == 6 || i == 7 || i == 9 || i == 10 || i == 11 || i == 12 || i == 13 ||i == 14|| i == 15 || i==16 || i==17)
+                        {
+                            System.Web.HttpContext.Current.Response.Write("<TD  style='font-size:11.0pt;text-align:left'>");
+                            Response.Write(tab + Dr[i]);
+                            System.Web.HttpContext.Current.Response.Write("</TD>");
+                        }
+
+                        if (i == 3 || i == 8)
+                        {
+                            System.Web.HttpContext.Current.Response.Write("<TD  style='font-size:11.0pt;text-align:right'>");
+                            Response.Write(tab + Dr[i]);
+                            System.Web.HttpContext.Current.Response.Write("</TD>");
+                        }
+
+                    }
+                    System.Web.HttpContext.Current.Response.Write("</TR>");
+                }
+                System.Web.HttpContext.Current.Response.Write("</Table>");
